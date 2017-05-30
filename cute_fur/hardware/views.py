@@ -19,22 +19,41 @@ def test(request):
 	return HttpResponse(html)
 
 def test_zpx(request):
-    # return render(request, 'test_zpx.html')
+#    if dict['box'] == 'ture':
+#        return HttpResponse(content='true')
+#    else:
+#         return HttpResponse(content='false')
+# return render(request, 'test_zpx.html')
+    file = open('test.json', 'r')
+    text = demjson.decode(file.read())
+    print text['box']
+#    print tttt
+#    text =
+#    file.close()
+#    print text
+    newt = str(text['box'])
+    return HttpResponse(content = newt)
+
+'''
     HOST = ''
-    POST = 8000
+    PORT = 8000
 
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     print 'socket created'
 
-    s.bind((HOST, POST))
+    s.bind((HOST, PORT))
     print 'socket bind complete'
 
     s.listen(10)
     print 'socket now listening'
 
     conn, addr = s.accept()
+    date = 'true'
+    conn.sendall(date)
+    conn.close()
+    s.close()
+'''
 
-    print 111
 
 def index(request):
 	# html = loader.get_template('index.html')
@@ -63,13 +82,16 @@ def post_test(request):
     if request.GET:
         dict['name'] = request.GET.get('name')
         dict['minute'] = request.GET.get('minute')
+        dict['box'] = request.GET.get('checkbox')
     elif request.POST:
         dict['name'] = request.POST.get('name')
         dict['minute'] = request.POST.get('minute')
+        dict['box'] = request.POST.get('checkbox')
     file = open('test.json', 'w')
     json = demjson.encode(dict)
-    file.write(str(json))
+    file.write(json)
     file.close()
+    print 'text in jeso has been changed'
 
 	# html = loader.get_template('index.html')
 	# c = context({'name' : '智能家电-1'})
