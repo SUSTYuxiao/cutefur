@@ -29,7 +29,7 @@ def test_zpx(request):
     print text['box']
 #    print tttt
 #    text =
-#    file.close()
+    file.close()
 #    print text
     newt = str(text['box'])
     return HttpResponse(content = newt)
