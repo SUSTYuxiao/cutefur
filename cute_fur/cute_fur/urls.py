@@ -26,5 +26,7 @@ urlpatterns = [
     url(r'^calendar.html$',views_1.calendar),
     url(r'^media.html$',views_1.media),
     url(r'^arduino',views_1.post_test),
-    url(r'^testzpx', views_1.test_zpx)
+    url(r'^testzpx', views_1.test_zpx),
+    url(r'^dbtest', views_1.dbcreate),
+    url(r'^dbset', views_1.dbset)
 ]
